@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_feedrate/templates *
+recursive-include octoprint_feedrate/translations *
+recursive-include octoprint_feedrate/static *

@@ -1,0 +1,14 @@
+<h3>{{ _('Navbar FeedRate') }}</h3>
+<div>
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label">{{ _('Feed Rate Units') }}</label>
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" class="input-mini" data-bind="value: settings.plugins.feedrate.frUnits">
+                </div>
+                <span class="help-block">{{ _('Units your slicer uses for feed rates (typically mm/min or mm/sec)') }}</span>
+            </div>
+        </div>
+    </form>
+</div>
