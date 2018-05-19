@@ -2,12 +2,19 @@
 <div>
     <form class="form-horizontal">
         <div class="control-group">
-            <label class="control-label">{{ _('Feed Rate Units') }}</label>
+            <label class="control-label">{{ _('Slicer Units') }}</label>
             <div class="controls">
-                <div class="input-append">
-                    <input type="text" class="input-mini" data-bind="value: settings.plugins.feedrate.frUnits">
-                </div>
-                <span class="help-block">{{ _('Units your slicer uses for feed rates (typically mm/min or mm/sec)') }}</span>
+                <select data-bind="value: settings.plugins.feedrate.frUnits, options: available_units, optionsText: 'name', optionsValue: 'name'">
+                </select>
+                <span class="help-block">{{ _('Units your slicer uses for feed rates') }}</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{ _('Display Units') }}</label>
+            <div class="controls">
+                <select data-bind="value: settings.plugins.feedrate.displayUnits, options: available_units, optionsText: 'name', optionsValue: 'name'">
+                </select>
+                <span class="help-block">{{ _('Units you\'d rather see in the navbar') }}</span>
             </div>
         </div>
     </form>

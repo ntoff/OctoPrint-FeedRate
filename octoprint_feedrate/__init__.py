@@ -17,7 +17,8 @@ class FeedRatePlugin(octoprint.plugin.StartupPlugin,
 
     def get_settings_defaults(self):
         return dict(
-            frUnits="mm/min"
+            frUnits="mm/min",
+            displayUnits="mm/sec"
         )
 
     def get_template_configs(self):
@@ -29,6 +30,8 @@ class FeedRatePlugin(octoprint.plugin.StartupPlugin,
         s = self._settings
         if "frUnits" in data.keys():
             s.set(["frUnits"], data["frUnits"])
+        if "displayUnits" in data.keys():
+            s.set(["displayUnits"], data["displayUnits"])
         s.save()
 
     def process_gcode(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
