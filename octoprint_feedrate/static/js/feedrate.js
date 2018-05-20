@@ -6,14 +6,14 @@ $(function() {
         self.settings = parameters[1];
 
         self.feedRate = ko.observable();
-        self.feedRate("N/A ")
+        self.feedRate("N/A "); //set the initial value for page load
         self.frUnits = ko.observable();
         self.displayUnits = ko.observable();
 
-        //see deez keez? use them to figure out the values rather than if then else
+        //the value isn't really used anywhere at the moment, for now it's just for reference
         self.settings.available_units = new ko.observable([
-            {key: "1", name: gettext("mm/sec")},
-            {key: "60", name: gettext("mm/min")},
+            {value: "1", name: "mm/sec"},
+            {value: "60", name: "mm/min"},
         ]);
         
         self.onBeforeBinding = function () {
@@ -29,30 +29,19 @@ $(function() {
             self.updateSettings();
         }
         
-        // I should probably figure out the value a better way, if then else is so 1990 but meh it's 1:30am
-        self.feedSpeed = function () {
-            var display = self.displayUnits();
-            var slicer = self.frUnits();
-            var speed = 0
-            if (display === "mm/sec") {
-                display = 1;
-            }
-            else {
-                display = 60;
-            }
-            if (slicer === "mm/sec") {
-                slicer = 1;
-            }
-            else {
-                slicer = 60;
-            }
+        self.feedSpeed = ko.computed(function () {
+            var display = self.displayUnits();  //get the user's settings preferences
+            var slicer = self.frUnits();        //for slicer / display units in string form
+            var speed = 0                       //init speed
+            display = (display === "mm/sec") ? 1:60; //reassign a numerical value based on settings string
+            slicer = (slicer === "mm/sec") ? 1:60;   //is there a better way? Probably
             speed = display / slicer * self.feedRate();
             speed = Math.floor(speed);
             if (!speed) {
                 speed = "N/A "
             }
             return speed;
-        };
+        });
         
         self.onDataUpdaterPluginMessage = function(plugin, data) {
             if (plugin != "feedrate") {
