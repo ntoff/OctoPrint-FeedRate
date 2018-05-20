@@ -3,7 +3,7 @@
 plugin_identifier = "feedrate"
 plugin_package = "octoprint_feedrate"
 plugin_name = "OctoPrint-Feedrate"
-plugin_version = "0.1.1"
+plugin_version = "0.1.2"
 plugin_description = """Last sent feedrate value in your navbar :DDDDDDDD"""
 plugin_author = "ntoff"
 plugin_author_email = ""
